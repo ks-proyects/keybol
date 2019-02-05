@@ -8,3 +8,7 @@ keytool -genkey -v -keystore keybol.keystore -alias keybolalias -keyalg RSA -key
 <p>
 Clave Almacen: keysist2018
 </p>
+<p>
+Apk Generado Directorio:  
+android/app/build/outputs/apk/app-release.apk
+</p>  
