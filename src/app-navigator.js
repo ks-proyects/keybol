@@ -1,13 +1,20 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import Splash from "./sections/components/splash";
-const Main = createStackNavigator(
+import Manager from "./screens/containers/manager";
+import Register from "./screens/containers/register";
+import Login from "./screens/containers/login";
+import Home from "./screens/containers/home";
+
+import {createSwitchNavigator } from "react-navigation";
+
+
+const SwitchNav = createSwitchNavigator(
     {
-        Splash
+        Splash,Manager,Register,Login,Home
     },
     {
-        initialRouteName: "Splash",
-        mode: "modal"
-    }
-);
-const AppContainer = createAppContainer(Main);
+        initialRouteName:'Manager'
+    });
+    
+const AppContainer = createAppContainer(SwitchNav);
 export default AppContainer;
