@@ -1,5 +1,5 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import Splash from "./sections/components/splash"
+import Splash from "./sections/components/splash";
 const Main = createStackNavigator(
     {
         Splash
