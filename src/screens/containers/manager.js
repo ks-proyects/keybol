@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Splash from "../../sections/components/splash";
 import { connect } from "react-redux";
 class Manager extends Component{
-    componentDidMount(){
+    async componentDidMount(){
         if (this.props.user) {
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('DrawwerNav');
         } else {
             this.props.navigation.navigate('Register');
         }
@@ -18,5 +18,4 @@ function mapStateToProps(state) {
         user: state.user
     }
 }
-
 export default connect(mapStateToProps)(Manager)

@@ -5,7 +5,8 @@ import { reduxifyNavigator } from "react-navigation-redux-helpers";
 
 const ReduxifyApp = reduxifyNavigator(AppNavigator, "root");
 class AppNavigatorWithState extends ReduxifyApp {
-
+    async componentDidMount() {
+    }
 }
 function mapStateToProps(state) {
     return {

@@ -10,16 +10,18 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-class Login extends Component {
+class Home extends Component {
     handleLogin = () => {
         debugger;
+        const token = 'ABCDEFGHIJK';
         this.props.dispatch({
             type: 'SET_USER',
             payload: {
+                token,
                 username: 'Freddy Castillo'
             }
         })
-        this.props.navigation.navigate('Manager');
+        this.props.navigation.navigate('Loading');
     }
     render() {
         return (
@@ -30,18 +32,7 @@ class Login extends Component {
                         source={require('../../../assets/img/logo.png')}
                         style={styles.logo}
                     />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Contraseña"
-                        placeholderTextColor="white"
-                        secureTextEntry={true}
-                    />
-                    <TouchableOpacity
-                        onPress={this.handleLogin}
-                        style={styles.button}
-                    >
-                        <Text style={styles.buttonLabel}>Iniciar Sesión</Text>
-                    </TouchableOpacity>
+                    <Text>Perfil</Text>
                 </View>
 
 
@@ -85,4 +76,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect(null)(Login)
+export default connect(null)(Home)

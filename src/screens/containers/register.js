@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import {
     View,
     Text,
@@ -6,28 +7,35 @@ import {
     StyleSheet,
     SafeAreaView,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    AsyncStorage
 } from 'react-native';
 import { connect } from 'react-redux';
 
 class Register extends Component {
-    
-    handleLogin = () => {
-        debugger;
-        const token = 'ABCDEFGHIJK';
+
+    state = {
+        nombres: '',
+        email: '',
+        clave: '',
+        claveConfirm: ''
+    }
+    onChangeText = (key, val) => {
+        this.setState({ [key]: val })
+    }
+    handleLogin = async () => {
+        const { nombres, email, clave } = this.state;
+        var newUser = { nombres, email, clave };
+        //const user = await AsyncStorage.setItem("USER_KEY", JSON.stringify(newUser));
         this.props.dispatch({
             type: 'SET_USER',
-            payload: {
-                token,
-                username: 'Freddy Castillo'
-            }
+            payload: newUser
         })
         this.props.navigation.navigate('Manager');
     }
     render() {
         return (
             <SafeAreaView style={styles.container}>
-
                 <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
                     <Image
                         source={require('../../../assets/img/logo.png')}
@@ -37,23 +45,43 @@ class Register extends Component {
                         style={styles.input}
                         placeholder="Nombre y Apellido"
                         placeholderTextColor="white"
+                        onChangeText={val => this.onChangeText('nombres', val)}
+                        returnKeyType="next"
+                        onSubmitEditing={() => this.emailInput.focus()}
                     />
                     <TextInput
                         style={styles.input}
-                        placeholder="Nombre de usuario"
+                        placeholder="Correo Electronico"
                         placeholderTextColor="white"
+                        onChangeText={val => this.onChangeText('email', val)}
+                        ref={input => (this.emailInput = input)}
+                        returnKeyType="next"
+                        onSubmitEditing={() => this.passwordCInput.focus()}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        autoCorrect={false}
                     />
                     <TextInput
                         style={styles.input}
                         placeholder="Contraseña"
                         placeholderTextColor="white"
                         secureTextEntry={true}
+                        ref={input => (this.passwordCInput = input)}
+                        onChangeText={val => this.onChangeText('clave', val)}
+                        onSubmitEditing={() => this.passwordInput.focus()}
+                        returnKeyType="next"
                     />
-                    
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Confirma la Contraseña"
+                        placeholderTextColor="white"
+                        secureTextEntry={true}
+                        onChangeText={val => this.onChangeText('claveConfirm', val)}
+                        ref={input => (this.passwordInput = input)}
+                    />
                     <TouchableOpacity
                         onPress={this.handleLogin}
-                        style={styles.button}
-                    >
+                        style={styles.button}>
                         <Text style={styles.buttonLabel}>Iniciar Sesión</Text>
                     </TouchableOpacity>
                 </View>
