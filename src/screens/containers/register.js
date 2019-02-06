@@ -24,7 +24,11 @@ class Register extends Component {
         this.setState({ [key]: val })
     }
     handleLogin = async () => {
-        const { nombres, email, clave } = this.state;
+        const { nombres, email, clave ,claveConfirm} = this.state;
+        if(claveConfirm!=clave){
+            alert("Las calves no coinciden");
+            return;
+        }
         var newUser = { nombres, email, clave };
         //const user = await AsyncStorage.setItem("USER_KEY", JSON.stringify(newUser));
         this.props.dispatch({
@@ -48,6 +52,7 @@ class Register extends Component {
                         onChangeText={val => this.onChangeText('nombres', val)}
                         returnKeyType="next"
                         onSubmitEditing={() => this.emailInput.focus()}
+                        require={true}
                     />
                     <TextInput
                         style={styles.input}
