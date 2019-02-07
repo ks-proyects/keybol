@@ -21,6 +21,14 @@ class Login extends Component {
         })
         this.props.navigation.navigate('Manager');
     }
+    handleRegister = () => {
+        debugger;
+        this.props.dispatch({
+            type: 'SET_USER',
+            payload: null
+        })
+        this.props.navigation.navigate('Register');
+    }
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -38,9 +46,13 @@ class Login extends Component {
                     />
                     <TouchableOpacity
                         onPress={this.handleLogin}
-                        style={styles.button}
-                    >
-                        <Text style={styles.buttonLabel}>Iniciar Sesión</Text>
+                        style={styles.button}>
+                        <Text style={styles.buttonLabel}>Ingresar</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={this.handleRegister}
+                        style={styles.button}>
+                        <Text style={styles.buttonLabel}>Registrarse</Text>
                     </TouchableOpacity>
                 </View>
 

@@ -6,7 +6,7 @@ class Manager extends Component{
         if (this.props.user) {
             this.props.navigation.navigate('DrawwerNav');
         } else {
-            this.props.navigation.navigate('Register');
+            this.props.navigation.navigate('Login');
         }
     }
     render(){
