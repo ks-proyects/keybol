@@ -21,39 +21,32 @@ class Login extends Component {
         })
         this.props.navigation.navigate('Manager');
     }
-    handleRegister = () => {
-        debugger;
-        this.props.dispatch({
-            type: 'SET_USER',
-            payload: null
-        })
-        this.props.navigation.navigate('Register');
-    }
+
     render() {
         return (
             <SafeAreaView style={styles.container}>
-
                 <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                    <Image
-                        source={require('../../../assets/img/logo.png')}
-                        style={styles.logo}
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Cédula"
+                        placeholderTextColor="white"
+                        secureTextEntry={true}
+                        onSubmitEditing={() => this.passwordCInput.focus()}
+                        returnKeyType="next"
                     />
                     <TextInput
                         style={styles.input}
                         placeholder="Contraseña"
                         placeholderTextColor="white"
                         secureTextEntry={true}
+                        ref={input => (this.passwordCInput = input)}
                     />
                     <TouchableOpacity
                         onPress={this.handleLogin}
                         style={styles.button}>
                         <Text style={styles.buttonLabel}>Ingresar</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={this.handleRegister}
-                        style={styles.button}>
-                        <Text style={styles.buttonLabel}>Registrarse</Text>
-                    </TouchableOpacity>
+
                 </View>
 
 

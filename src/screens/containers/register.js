@@ -41,10 +41,6 @@ class Register extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                    <Image
-                        source={require('../../../assets/img/logo.png')}
-                        style={styles.logo}
-                    />
                     <TextInput
                         style={styles.input}
                         placeholder="Nombre y Apellido"
