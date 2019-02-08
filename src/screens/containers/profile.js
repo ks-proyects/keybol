@@ -11,30 +11,28 @@ import {
 import { connect } from 'react-redux';
 
 class Home extends Component {
-    handleLogin = () => {
-        debugger;
-        const token = 'ABCDEFGHIJK';
+    logout = () => {
         this.props.dispatch({
             type: 'SET_USER',
-            payload: {
-                token,
-                username: 'Freddy Castillo'
-            }
+            payload: null
         })
-        this.props.navigation.navigate('Loading');
+        this.props.navigation.navigate('Manager');
     }
     render() {
         return (
             <SafeAreaView style={styles.container}>
-
                 <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
                     <Image
                         source={require('../../../assets/img/logo.png')}
                         style={styles.logo}
                     />
                     <Text>Perfil</Text>
+                    <TouchableOpacity
+                        onPress={this.logout}
+                        style={styles.button}>
+                        <Text style={styles.buttonLabel}>Salir</Text>
+                    </TouchableOpacity>
                 </View>
-
 
             </SafeAreaView>
         )

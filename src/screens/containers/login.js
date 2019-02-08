@@ -6,11 +6,26 @@ import {
     StyleSheet,
     SafeAreaView,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    StatusBar
 } from 'react-native';
 import { connect } from 'react-redux';
 
+import InputIcon from "../../controls/imputs/components/inputIcon";
+
 class Login extends Component {
+
+    state = {
+        cedula: '',
+        clave: ''
+    }
+    onChangeText = (key, val) => {
+        this.setState({ [key]: val })
+    }
+
+    componentDidMount() {
+        StatusBar.setHidden(true);
+    }
     handleLogin = () => {
         debugger;
         this.props.dispatch({
@@ -25,31 +40,31 @@ class Login extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                    <TextInput
-                        style={styles.input}
+                <View style={{ flex: 1, alignItems: "center", justifyContent: "center", width: "70%" }}>
+                    <InputIcon
+                        name="user"
                         placeholder="Cédula"
-                        placeholderTextColor="white"
-                        secureTextEntry={true}
-                        onSubmitEditing={() => this.passwordCInput.focus()}
                         returnKeyType="next"
+                        iconSize={30}
+                        iconColor="red"
+                        placeholderColor="red"
+                        isSecureText={true}
+                        onSubmitEditing={() => this.password2.focus()}
+                        onChangeText={val => this.onChangeText('cedula', val)}
                     />
-                    <TextInput
-                        style={styles.input}
+                    <InputIcon
+                        name="send"
                         placeholder="Contraseña"
-                        placeholderTextColor="white"
-                        secureTextEntry={true}
-                        ref={input => (this.passwordCInput = input)}
-                    />
-                    <TouchableOpacity
+                        iconSize={30}
+                        returnKeyType="send"
+                        reference={input => (this.password2 = input)}
+                        onChangeText={val => this.onChangeText('clave', val)} />
+                    <TouchableOpacity width="100%"
                         onPress={this.handleLogin}
                         style={styles.button}>
                         <Text style={styles.buttonLabel}>Ingresar</Text>
                     </TouchableOpacity>
-
                 </View>
-
-
             </SafeAreaView>
         )
     }
@@ -63,14 +78,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     logo: {
-        width: 200,
         height: 80,
         resizeMode: 'contain',
         marginBottom: 10,
     },
     input: {
         marginBottom: 10,
-        width: 250,
         height: 50,
         paddingHorizontal: 10,
         borderRadius: 5,
@@ -83,7 +96,7 @@ const styles = StyleSheet.create({
     },
     buttonLabel: {
         color: 'white',
-        padding: 10,
+        padding: 5,
         fontSize: 18,
         fontWeight: 'bold',
         textAlign: 'center'
